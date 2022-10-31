@@ -24,7 +24,6 @@ $dotenv->safeLoad();
 // Instantiate App
 $app = AppFactory::create();
 
-
 // Add error middleware
 $app->addErrorMiddleware(true, true, true);
 
@@ -36,6 +35,8 @@ $app->group('/usuarios', function (RouteCollectorProxy $group) {
     $group->get('[/]', \UsuarioController::class . ':TraerTodos');
     $group->get('/{usuario}', \UsuarioController::class . ':TraerUno');
     $group->post('[/]', \UsuarioController::class . ':CargarUno');
+    $group->put('[/]', \UsuarioController::class . ':ModificarUno');
+    $group->delete('[/]', \UsuarioController::class . ':BorrarUno');
   });
 
 $app->get('[/]', function (Request $request, Response $response) {    
